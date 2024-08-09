@@ -1,17 +1,10 @@
-import 'package:ecommerce/common/widgets/appbar/appbar.dart';
-import 'package:ecommerce/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
-import 'package:ecommerce/common/widgets/icons/t_circular_icon.dart';
-import 'package:ecommerce/common/widgets/images/t_rounded_image.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
 import 'package:ecommerce/features/shop/screens/product_details/widgets/bottom_add_to_cart_widget.dart';
 import 'package:ecommerce/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:ecommerce/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:ecommerce/features/shop/screens/product_details/widgets/rating_share_widget.dart';
 import 'package:ecommerce/features/shop/screens/product_reviews/product_reviews.dart';
-import 'package:ecommerce/utils/constants/colors.dart';
-import 'package:ecommerce/utils/constants/image_strings.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
-import 'package:ecommerce/utils/helpers/helper_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -25,7 +18,7 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: TBottomAddToCart(),
+      bottomNavigationBar: const TBottomAddToCart(),
       body: SingleChildScrollView(
         child: Column(
           children: [

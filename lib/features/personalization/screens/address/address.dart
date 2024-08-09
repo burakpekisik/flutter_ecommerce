@@ -1,7 +1,6 @@
 import 'package:ecommerce/common/widgets/appbar/appbar.dart';
 import 'package:ecommerce/features/personalization/screens/address/add_new_address.dart';
 import 'package:ecommerce/features/personalization/screens/address/widgets/single_address.dart';
-import 'package:ecommerce/features/shop/screens/home/widgets/rounded_container.dart';
 import 'package:ecommerce/utils/constants/colors.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';

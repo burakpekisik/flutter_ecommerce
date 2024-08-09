@@ -26,7 +26,7 @@ class TCartItem extends StatelessWidget {
               ? TColors.darkerGrey
               : TColors.light,
         ),
-        const SizedBox(height: TSizes.spaceBtwItems),
+        const SizedBox(width: TSizes.spaceBtwItems),
 
         /// Title, Price & Size
         Expanded(
