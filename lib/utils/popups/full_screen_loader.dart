@@ -15,16 +15,20 @@ class TFullScreenLoader {
           color: THelperFunctions.isDarkMode(Get.context!) ? TColors.dark : TColors.white,
           width: double.infinity,
           height: double.infinity,
-          child: Column(
-            children: [
-              const SizedBox(height: 250),
-              TAnimationLoaderWidget(text: text, animation: animation),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 250),
+                TAnimationLoaderWidget(text: text, animation: animation),
+              ],
+            ),
           ),
         ),
-      )
+      ),
     );
   }
+
   /// Stop the currently open loading dialog.
   static stopLoading() {
     Navigator.of(Get.overlayContext!).pop();
