@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class TShimmerEffect extends StatelessWidget {
-  const TShimmerEffect(
-      {super.key,
-      required this.width,
-      required this.height,
-      this.radius = 15,
-      this.color});
+  const TShimmerEffect({super.key, required this.width, required this.height, this.radius = 15, this.color});
 
   final double width, height, radius;
   final Color? color;
@@ -25,7 +20,7 @@ class TShimmerEffect extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: color ?? (dark ? TColors.darkerGrey : TColors.white),
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(radius)
         ),
       ),
     );

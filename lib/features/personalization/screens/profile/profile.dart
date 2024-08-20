@@ -1,10 +1,10 @@
 import 'package:ecommerce/common/widgets/appbar/appbar.dart';
 import 'package:ecommerce/common/widgets/images/t_circular_image.dart';
+import 'package:ecommerce/common/widgets/shimmers/shimmer.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
 import 'package:ecommerce/features/personalization/controllers/user_controller.dart';
 import 'package:ecommerce/features/personalization/screens/profile/widgets/change_name.dart';
 import 'package:ecommerce/features/personalization/screens/profile/widgets/profile_menu.dart';
-import 'package:ecommerce/features/shop/screens/home/widgets/shimmer.dart';
 import 'package:ecommerce/utils/constants/image_strings.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';

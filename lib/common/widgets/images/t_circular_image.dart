@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce/features/shop/screens/home/widgets/shimmer.dart';
+import 'package:ecommerce/common/widgets/shimmers/shimmer.dart';
 import 'package:ecommerce/utils/constants/colors.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
 import 'package:ecommerce/utils/helpers/helper_function.dart';
@@ -19,7 +19,7 @@ class TCircularImage extends StatelessWidget {
   });
 
   final BoxFit? fit;
-  final String image;
+  final String? image;
   final bool isNetworkImage;
   final Color? overlayColor;
   final Color? backgroundColor;
@@ -27,6 +27,9 @@ class TCircularImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Check if the image is null or empty
+    final bool isImageValid = image != null && image!.isNotEmpty;
+
     return Container(
       width: width,
       height: height,
@@ -41,20 +44,25 @@ class TCircularImage extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(100),
         child: Center(
-            child: isNetworkImage
-                ? CachedNetworkImage(
-                    fit: fit,
-                    color: overlayColor,
-                    imageUrl: image,
-                    progressIndicatorBuilder: (context, url, downloadProgress) =>
-                        const TShimmerEffect(width: 55, height: 55),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
-                  )
-                : Image(
-                    fit: fit,
-                    image: AssetImage(image),
-                    color: overlayColor,
-                  )),
+          child: isImageValid
+              ? (isNetworkImage
+              ? CachedNetworkImage(
+            fit: fit,
+            color: overlayColor,
+            imageUrl: image!,
+            progressIndicatorBuilder:
+                (context, url, downloadProgress) =>
+            const TShimmerEffect(width: 55, height: 55),
+            errorWidget: (context, url, error) =>
+            const Icon(Icons.error),
+          )
+              : Image(
+            fit: fit,
+            image: AssetImage(image!),
+            color: overlayColor,
+          ))
+              : const Icon(Icons.error), // Show error icon if image is invalid
+        ),
       ),
     );
   }
