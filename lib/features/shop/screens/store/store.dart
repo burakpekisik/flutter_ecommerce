@@ -4,8 +4,12 @@ import 'package:ecommerce/common/widgets/brands/brand_card.dart';
 import 'package:ecommerce/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:ecommerce/common/widgets/layouts/grid_layout.dart';
 import 'package:ecommerce/common/widgets/products/cart/cart_menu_icon.dart';
+import 'package:ecommerce/common/widgets/shimmers/brands_shimmer.dart';
 import 'package:ecommerce/common/widgets/texts/section_heading.dart';
+import 'package:ecommerce/features/shop/controllers/brand_controller.dart';
+import 'package:ecommerce/features/shop/controllers/category_controller.dart';
 import 'package:ecommerce/features/shop/screens/brand/all_brands.dart';
+import 'package:ecommerce/features/shop/screens/brand/brand_products.dart';
 import 'package:ecommerce/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:ecommerce/utils/constants/colors.dart';
 import 'package:ecommerce/utils/constants/sizes.dart';
@@ -18,6 +22,9 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brandController = Get.put(BrandController());
+    //final categories = CategoryController.instance.featuredCategories;
+
     return DefaultTabController(
       length: 5,
       child: Scaffold(
@@ -54,15 +61,35 @@ class StoreScreen extends StatelessWidget {
 
                         /// Featured Brands
                         TSectionHeading(
-                            title: 'Featured Brands', onPressed: () => Get.to(() => const AllBrandsScreen())),
+                            title: 'Featured Brands',
+                            onPressed: () =>
+                                Get.to(() => const AllBrandsScreen())),
                         const SizedBox(height: TSizes.spaceBtwItems / 1.5),
 
-                        TGridLayout(
-                            itemCount: 4,
-                            mainAxisExtent: 80,
-                            itemBuilder: (_, index) {
-                              return const TBrandCard(showBorder: false);
-                            })
+                        /// Brands Grid
+                        Obx(() {
+                          if (brandController.isLoading.value) {
+                            return const TBrandsShimmer();
+                          }
+
+                          if (brandController.featuredBrands.isEmpty) {
+                            return Center(
+                              child: Text('No Data Found!',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .apply(color: Colors.white)),
+                            );
+                          }
+
+                          return TGridLayout(
+                              itemCount: brandController.featuredBrands.length,
+                              mainAxisExtent: 80,
+                              itemBuilder: (_, index) {
+                                final brand = brandController.featuredBrands[index];
+                                return TBrandCard(showBorder: true, brand: brand, onTap: () => Get.to(() => BrandProducts(brand: brand)),);
+                              });
+                        })
                       ],
                     ),
                   ),
@@ -95,4 +122,3 @@ class StoreScreen extends StatelessWidget {
     );
   }
 }
-
